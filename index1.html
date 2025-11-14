@@ -1,0 +1,1321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfortable Stay- Claim Your Free Stay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .hero {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .offer-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .restaurant-comparison {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .restaurant-comparison h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .chart-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .restaurant-name {
+            min-width: 180px;
+            font-weight: bold;
+            color: #333;
+            font-size: 1em;
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 40px;
+        }
+
+        .bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .bar.low {
+            background: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);
+        }
+
+        .bar.medium {
+            background: linear-gradient(90deg, #f09819 0%, #edde5d 100%);
+        }
+
+        .bar.high {
+            background: linear-gradient(90deg, #eb3349 0%, #f45c43 100%);
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 20px;
+            border-radius: 5px;
+        }
+
+        .restaurant-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .restaurant-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .restaurant-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .restaurant-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .tier-premium {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .tier-standard {
+            background: #c0c0c0;
+            color: #333;
+        }
+
+        .tier-budget {
+            background: #cd7f32;
+            color: white;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .steps {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .rules-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .rules-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            margin-top: 50px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            float: right;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .offer-badge {
+                font-size: 1.3em;
+                padding: 20px;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .bar-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .restaurant-name {
+                min-width: auto;
+            }
+            .restaurant-table {
+                font-size: 0.9em;
+            }
+            .restaurant-table th,
+            .restaurant-table td {
+                padding: 10px;
+            }
+        }
+        /* Poster Top (scoped styles from posterguid2 Design 3) */
+        .poster-top h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .poster-top .poster-showcase {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .poster-top .poster-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .poster-top .poster-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .poster-top .poster-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .poster-top .poster-body {
+            aspect-ratio: 3/4;
+            position: relative;
+            background: #f8f9fa;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .poster-top .compact-hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #667eea 100%);
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .poster-top .compact-title {
+            font-size: 2.2em;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .poster-top .compact-free {
+            color: #ffd700;
+            font-size: 1.4em;
+        }
+
+        .poster-top .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .poster-top .compact-box {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .poster-top .compact-box-title {
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .poster-top .compact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .poster-top .compact-list li {
+            font-size: 0.7em;
+            color: #666;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .poster-top .compact-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .poster-top .mini-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .poster-top .mini-step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .poster-top .mini-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: 15px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .poster-top .mini-step-icon {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .poster-top .mini-step-text {
+            font-size: 0.65em;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        .poster-top .final-cta {
+            background: #ffd700;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .poster-top .qr-box {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border: 3px solid #1e3c72;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1e3c72;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .poster-top .qr-icon {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .poster-top .qr-text {
+            font-size: 0.7em;
+        }
+
+        @media (max-width: 768px) {
+            .poster-top .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Contact section */
+        .contact-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 12px;
+        }
+        .contact-number {
+            font-weight: bold;
+            color: #1e3c72;
+            font-size: 1.1em;
+        }
+        .contact-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        .btn-call {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        @media (max-width: 768px) {
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+        <style>
+            /* Instagram section */
+            .instagram-section {
+                max-width: 1000px;
+                margin: 30px auto 20px;
+                padding: 16px;
+                background: #f9fafb;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+                box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            }
+            .instagram-header {
+                text-align: center;
+                margin-bottom: 10px;
+                color: #374151;
+            }
+            .instagram-card {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                padding: 14px 16px;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+            }
+            .insta-handle {
+                font-weight: 600;
+                color: #1f2937;
+            }
+            .btn-instagram {
+                display: inline-block;
+                padding: 10px 14px;
+                border-radius: 8px;
+                background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+                color: #fff;
+                text-decoration: none;
+                transition: transform 0.15s ease, box-shadow 0.15s ease;
+            }
+            .btn-instagram:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 16px rgba(221, 42, 123, 0.35);
+            }
+            @media (max-width: 600px) {
+                .instagram-card {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+
+            /* Inline Instagram banner inside poster-top dashboard */
+            .poster-top .instagram-inline {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                margin: 10px 0 16px;
+                padding: 10px 12px;
+                background: #fff;
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+            }
+            .poster-top .instagram-inline .inline-title {
+                font-weight: 600;
+                color: #374151;
+            }
+            .poster-top .instagram-inline .inline-handle {
+                font-weight: 600;
+                color: #1f2937;
+            }
+            .poster-top .instagram-inline .inline-sub {
+                color: #6b7280;
+                font-size: 0.95em;
+            }
+            @media (max-width: 640px) {
+                .poster-top .instagram-inline {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+
+            /* QR banner styles */
+            .poster-top .qr-banner {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                margin: 10px 0 16px;
+                padding: 12px;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 10px;
+            }
+            .poster-top .qr-info {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .poster-top .qr-title {
+                font-weight: 700;
+                color: #374151;
+            }
+            .poster-top .qr-sub {
+                color: #6b7280;
+            }
+            .poster-top .qr-image {
+                width: 160px;
+                height: 160px;
+                border-radius: 8px;
+                border: 1px solid #e5e7eb;
+                background: #fff;
+            }
+            @media (max-width: 640px) {
+                .poster-top .qr-banner {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .poster-top .qr-image {
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+        <section class="poster-top">
+            <h1>🏨 ComForTable And Stay</h1>
+            <div class="poster-showcase">
+                <!-- Compact Design Only -->
+                <div class="poster-card">
+                    <div class="qr-banner">
+                        <div class="qr-info">
+                            <div class="qr-title"> Sacn QR : For Room Details visit Website</div>
+                            <div class="qr-sub">Scan to open full room details</div>
+                            <a class="btn" href="https://bit.ly/GetRoomSingrauli" target="_blank" rel="noopener">Open Room Details</a>
+                        </div>
+                        <img class="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fbit.ly%2FGetRoomSingrauli" alt="QR code linking to room details website" loading="lazy">
+                    </div>
+                    <div class="poster-header">DashBoard</div>
+                    <div class="instagram-inline">
+                        <div>
+                            <div class="inline-title">Check Instagram for Room Details</div>
+                            <div class="inline-handle">@com_for_table_stay</div>
+                            <div class="inline-sub">Photos, room types, updates, and more.</div>
+                        </div>
+                        <a class="btn btn-instagram" href="https://www.instagram.com/com_for_table_stay/" target="_blank" rel="noopener">View on Instagram</a>
+                    </div>
+                    <div class="poster-body compact-layout">
+                        <div class="compact-hero">
+                            <div class="compact-title">
+                                CLAIM YOUR<br>
+                                <span class="compact-free">FREE</span> 1 DAY STAY
+                            </div>
+                            <div style="margin-top: 10px; font-size: 1em;">
+                                🛏️ Comfortable AC Room • 24 Hours
+                            </div>
+                        </div>
+                        
+                        <div class="two-column">
+                            <div class="compact-box">
+                                <div class="compact-box-title">
+                                    <span>✨</span> What You Get
+                                </div>
+                                <ul class="compact-list">
+                                    <li>Free AC room stay</li>
+                                    <li>24 hours comfort</li>
+                                    <li>Premium hotel</li>
+                                    <li>Zero hidden cost</li>
+                                </ul>
+                            </div>
+                            <div class="compact-box">
+                                <div class="compact-box-title">
+                                    <span>📋</span> Requirements
+                                </div>
+                                <ul class="compact-list">
+                                    <li>Dine at partners</li>
+                                    <li>Collect your bills</li>
+                                    <li>Reach min. amount</li>
+                                    <li>Upload & claim</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="compact-box" style="margin-bottom: 15px;">
+                            <div class="compact-box-title">
+                                <span>🎯</span> Simple 5-Step Process
+                            </div>
+                            <div class="compact-list">
+                                <li><strong>Step 1:</strong> Choose restaurant by budget</li>
+                                <li><strong>Step 2:</strong> Dine & save bills</li>
+                                <li><strong>Step 3:</strong> Scan QR or visit site</li>
+                                <li><strong>Step 4:</strong> Upload bills & claim</li>
+                                <li><strong>Step 5:</strong> Verified in 24-48hrs</li>
+                            </div>
+                        </div>
+                        
+                        <div class="mini-steps">
+                            <div class="mini-step">
+                                <div class="mini-step-icon">🍽️</div>
+                                <div class="mini-step-text">Dine</div>
+                            </div>
+                            <div class="mini-step">
+                                <div class="mini-step-icon">💰</div>
+                                <div class="mini-step-text">Save Bills</div>
+                            </div>
+                            <div class="mini-step">
+                                <div class="mini-step-icon">📤</div>
+                                <div class="mini-step-text">Submit</div>
+                            </div>
+                            <div class="mini-step">
+                                <div class="mini-step-icon">✅</div>
+                                <div class="mini-step-text">Verified</div>
+                            </div>
+                            <div class="mini-step">
+                                <div class="mini-step-icon">🏨</div>
+                                <div class="mini-step-text">Stay Free</div>
+                            </div>
+                        </div>
+                        
+                        <div class="final-cta">
+                            <div class="qr-box">
+                                <div class="qr-icon">📱</div>
+                                <div class="qr-text">SCAN</div>
+                            </div>
+                            <div style="flex: 1; text-align: center;">
+                                <div style="font-size: 1.3em; font-weight: bold; color: #1e3c72;">
+                                    CLAIM NOW!
+                                </div>
+                                <div style="font-size: 0.85em; color: #2a5298;">
+                                    Scan • Claim • Stay FREE
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <header>
+            <h1>🏨 Comfortable Stay</h1>
+            <p class="tagline">Dine. Save. Stay(Dormintory/ Pg / Hotel ). Enjoy!</p>
+        </header>
+
+        <div class="hero">
+            <h2>Welcome to Our Exclusive Dining Rewards Program!</h2>
+            <div class="offer-badge">
+                🎉 Dine & Earn Your FREE Stay! 🎉
+            </div>
+            <p style="font-size: 1.2em; color: #666; margin: 20px 0;">
+                Different restaurants, different bill amounts - Find the best deal for you!
+            </p>
+            <button class="btn" onclick="scrollToRestaurants()">View Restaurant Offers</button>
+            <button class="btn" onclick="showClaimForm()">Claim Your Free Stay</button>
+        </div>
+
+        <section class="instagram-section" id="instagram">
+            <h2 class="instagram-header">Check Instagram for Room Details</h2>
+            <div class="instagram-card">
+                <div>
+                    <div class="insta-handle">@com_for_table_stay</div>
+                    <div style="color:#6b7280;">Photos, room types, updates, and more.</div>
+                </div>
+                <a class="btn btn-instagram" href="https://www.instagram.com/com_for_table_stay/" target="_blank" rel="noopener" aria-label="View @com_for_table_stay on Instagram">View on Instagram</a>
+            </div>
+        </section>
+
+        <div class="contact-section" id="contact">
+            <h2 style="text-align: center; color: #667eea; margin-bottom: 10px;">Contact Us</h2>
+            <p style="text-align: center; color: #555; margin-bottom: 20px;">Start a call or WhatsApp chat instantly.</p>
+            <div class="contact-item">
+                <div class="contact-number">+91 7879028316</div>
+                <div class="contact-actions">
+                    <a class="btn btn-call" href="tel:+917879028316">Call</a>
+                    <a class="btn btn-whatsapp" href="https://wa.me/917879028316?text=Hello,%20I%20want%20to%20book%20a%20bed.%20OR%20Hi%20I%20want%20to%20claim%20a%20free%20stay" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-number">+91 9770236735</div>
+                <div class="contact-actions">
+                    <a class="btn btn-call" href="tel:+919770236735">Call</a>
+                    <a class="btn btn-whatsapp" href="https://wa.me/919770236735?text=Hi%20I%20want%20to%20claim%20a%20free%20stay.Hello,%20I%20want%20to%20book%20a%20bed. " target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="steps">
+            <h2 class="center heading">Ask About Restaurant Offers</h2>
+            <form action="https://formspree.io/f/mzzkborg" method="POST">
+                <input type="hidden" name="section" value="Ask About Restaurant Offers">
+                <input type="hidden" name="_subject" value="Ask About Restaurant Offers — Website">
+                <label>
+                    Your email:
+                    <input type="email" name="email" required>
+                </label>
+                <label>
+                    Your message:
+                    <textarea name="message" rows="4" required></textarea>
+                </label>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Send</button>
+            </form>
+        </div>
+
+        <div class="steps">
+            <h2 class="center heading">Claim Your Free Stay — Contact</h2>
+            <form action="https://formspree.io/f/mzzkborg" method="POST">
+                <input type="hidden" name="section" value="Claim Your Free Stay — Contact">
+                <input type="hidden" name="_subject" value="Claim Offer Inquiry — Website">
+                <label>
+                    Your email:
+                    <input type="email" name="email" required>
+                </label>
+                <label>
+                    Your message:
+                    <textarea name="message" rows="4" required></textarea>
+                </label>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Send</button>
+            </form>
+        </div>
+
+        <div class="restaurant-comparison">
+            <h2>📊 Partner Restaurants & Bill Requirements</h2>
+            
+            <div class="info-box">
+                <strong>💡 How it works:</strong> Each partner restaurant has a different bill threshold. Premium restaurants require higher spending, while budget-friendly options have lower requirements. Choose what suits your dining style!
+            </div>
+
+            <div class="chart-container">
+                <h3 style="text-align: center; margin-bottom: 20px; color: #555;">Bill Amount Required for FREE Stay</h3>
+                <div class="bar-chart" id="barChart">
+                    <!-- Bars will be inserted here by JavaScript -->
+                </div>
+
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);"></div>
+                        <span>Budget Friendly (₹300-₹600)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(90deg, #f09819 0%, #edde5d 100%);"></div>
+                        <span>Standard (₹700-₹1200)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(90deg, #eb3349 0%, #f45c43 100%);"></div>
+                        <span>Premium (₹1500+)</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 40px 0 20px; color: #555;">Detailed Restaurant Information</h3>
+            <table class="restaurant-table">
+                <thead>
+                    <tr>
+                        <th>Restaurant Name</th>
+                        <th>Category</th>
+                        <th>Bill Required</th>
+                        <th>Tier</th>
+                    </tr>
+                </thead>
+                <tbody id="restaurantTable">
+                    <!-- Table rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="steps">
+            <h2 style="text-align: center; color: #667eea; margin-bottom: 30px;">How It Works</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <strong>Choose Your Restaurant</strong><br>
+                    Pick from our partner restaurants based on your budget and preference
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <strong>Dine & Collect Bills</strong><br>
+                    Enjoy meals and save your bills until you reach the required amount for that restaurant
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <strong>QR Code: Room Details Website</strong><br>
+                    Look for our promotional poster at the restaurant or visit our website
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <strong>Submit Your Claim</strong><br>
+                    Upload photos of your bills and complete the simple claim form
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <div>
+                    <strong>Enjoy Your FREE Stay!</strong><br>
+                    Get verified within 24-48 hours and book your complimentary stay
+                </div>
+            </div>
+        </div>
+
+        <div class="rules-box">
+            <h4>📋 Important Terms & Conditions</h4>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>Bills can be accumulated across multiple visits to the SAME restaurant</li>
+                <li>Cannot combine bills from different restaurants for one free stay</li>
+                <li>Check-in: Any time upon confirmation</li>
+                <li>Check-out: 11:59 AM next day (24-hour stay from check-in)</li>
+                <li>Bills must be dated within the last 30 days</li>
+                <li>One free stay per customer per restaurant per month</li>
+                <li>Bills must clearly show restaurant name, date, and amount</li>
+                <li>Subject to room availability - advance booking recommended</li>
+            </ul>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>🏆 Why This Program?</h3>
+                <ul class="features-list">
+                    <li>Save money while dining out</li>
+                    <li>Try different restaurants</li>
+                    <li>Flexible bill requirements</li>
+                    <li>Multiple partner options</li>
+                    <li>Easy claim process</li>
+                    <li>Comfortable accommodation</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>🏨 Hotel Features</h3>
+                <ul class="features-list">
+                    <li>Air-conditioned rooms</li>
+                    <li>Free WiFi</li>
+                    <li>TV with cable</li>
+                    <li>Hot water 24/7</li>
+                    <li>Room service</li>
+                    <li>Secure parking</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>📞 Need Help?</h3>
+                <p style="margin-bottom: 15px;">Have questions about the program?</p>
+                <ul class="features-list">
+                    <li>Check restaurant eligibility</li>
+                    <li>Verify your bills</li>
+                    <li>Book your stay</li>
+                    <li>Get support anytime</li>
+                </ul>
+                <form action="https://formspree.io/f/mzzkborg" method="POST">
+                     <input type="hidden" name="section" value="Need Help — Support">
+                     <input type="hidden" name="_subject" value="Support/Help Inquiry — Website">
+                     <label>
+                         Your email:
+                         <input type="email" name="email" required>
+                     </label>
+                    <label>
+                        Your message:
+                        <textarea name="message" rows="4" required></textarea>
+                    </label>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 15px;">Send</button>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Comfortable Stay Hotel. All rights reserved.</p>
+            <p style="margin-top: 10px;">Contact: info@comfortablestay.com | <a href="tel:+917879028316" style="color: #fff;">+91 7879028316</a> | <a href="tel:+919770236735" style="color: #fff;">+91 9770236735</a> | <a href="https://wa.me/917879028316" target="_blank" rel="noopener" style="color: #fff;">WhatsApp</a> | <a href="https://www.instagram.com/com_for_table_stay/" target="_blank" rel="noopener" style="color: #fff;">Instagram</a></p>
+        </footer>
+
+        <div class="steps">
+            <h2 class="center heading">Quick Claim Form</h2>
+            <form action="https://formspree.io/f/mzzkborg" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="section" value="Quick Claim Form — Root HTML">
+                <input type="hidden" name="_subject" value="Quick Claim Submission — Website">
+                <label><strong>Your Name:</strong></label>
+                <input type="text" name="name" required placeholder="Enter your full name">
+
+                <label><strong>Mobile Number:</strong></label>
+                <input type="tel" name="mobile" required placeholder="+91-XXXXXXXXXX">
+
+                <label><strong>Email:</strong></label>
+                <input type="email" name="email" required placeholder="your@email.com">
+
+                <label><strong>Upload Bill(s):</strong></label>
+                <input type="file" name="upload" accept="image/*" multiple required>
+
+                <label><strong>Message:</strong></label>
+                <textarea name="message" rows="4" placeholder="Write your message here..." required></textarea>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Send</button>
+            </form>
+            <p class="help-text">This form submits securely via Formspree.</p>
+        </div>
+    </div>
+
+    <!-- Claim Form Modal -->
+    <div id="claimModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('claimModal')">&times;</span>
+            <h2 style="color: #667eea;">Claim Your Free Stay</h2>
+            <form onsubmit="submitClaim(event)">
+                <label><strong>Full Name:</strong></label>
+                <input type="text" required placeholder="Enter your full name">
+
+                <label><strong>Phone Number:</strong></label>
+                <input type="tel" required placeholder="+91-XXXXXXXXXX">
+
+                <label><strong>Email:</strong></label>
+                <input type="email" required placeholder="your@email.com">
+
+                <label><strong>Select Restaurant:</strong></label>
+                <select id="restaurantSelect" required onchange="updateRequiredAmount()">
+                    <option value="">Choose restaurant...</option>
+                </select>
+
+                <label><strong>Total Bill Amount:</strong></label>
+                <input type="number" id="billAmount" required placeholder="Enter total amount">
+                <p id="amountRequired" style="color: #666; font-size: 0.9em; margin-top: 5px;"></p>
+
+                <label><strong>Preferred Check-in Date:</strong></label>
+                <input type="date" required>
+
+                <label><strong>Upload Bill Images:</strong></label>
+                <input type="file" accept="image/*" multiple required>
+                <p style="color: #666; font-size: 0.9em; margin-top: 5px;">Upload all bills from the selected restaurant and contact us for any query : +917879028316 </p>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">
+                    Submit Claim
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const restaurants = [
+            { name: "Spice Paradise", category: "Fine Dining", amount: 2000, tier: "premium" },
+            { name: "The Royal Feast", category: "Fine Dining", amount: 1800, tier: "premium" },
+            { name: "Luxury Bites", category: "Fine Dining", amount: 1500, tier: "premium" },
+            { name: "Ocean Breeze", category: "Seafood", amount: 1200, tier: "standard" },
+            { name: "Tandoor Masters", category: "North Indian", amount: 1000, tier: "standard" },
+            { name: "Urban Kitchen", category: "Multi-Cuisine", amount: 900, tier: "standard" },
+            { name: "Green Leaf Cafe", category: "Vegetarian", amount: 700, tier: "standard" },
+            { name: "Street Food Junction", category: "Fast Food", amount: 600, tier: "budget" },
+            { name: "Chai & Chaat Corner", category: "Snacks", amount: 500, tier: "budget" },
+            { name: "Quick Bites Express", category: "Fast Food", amount: 400, tier: "budget" },
+            { name: "Budget Diner", category: "Multi-Cuisine", amount: 300, tier: "budget" }
+        ];
+
+        // Sort restaurants by amount for better visualization
+        restaurants.sort((a, b) => a.amount - b.amount);
+
+        function getBarClass(amount) {
+            if (amount <= 600) return 'low';
+            if (amount <= 1200) return 'medium';
+            return 'high';
+        }
+
+        function getTierBadgeClass(tier) {
+            return `tier-${tier}`;
+        }
+
+        function getTierLabel(tier) {
+            const labels = {
+                'budget': 'Budget Friendly',
+                'standard': 'Standard',
+                'premium': 'Premium'
+            };
+            return labels[tier];
+        }
+
+        // Generate bar chart
+        const maxAmount = Math.max(...restaurants.map(r => r.amount));
+        const barChart = document.getElementById('barChart');
+        
+        restaurants.forEach(restaurant => {
+            const barItem = document.createElement('div');
+            barItem.className = 'bar-item';
+            
+            const percentage = (restaurant.amount / maxAmount) * 100;
+            const barClass = getBarClass(restaurant.amount);
+            
+            barItem.innerHTML = `
+                <div class="restaurant-name">${restaurant.name}</div>
+                <div class="bar-wrapper">
+                    <div class="bar ${barClass}" style="width: 0%;" data-width="${percentage}%">
+                        ₹${restaurant.amount}
+                    </div>
+                </div>
+            `;
+            barChart.appendChild(barItem);
+        });
+
+        // Animate bars on load
+        setTimeout(() => {
+            document.querySelectorAll('.bar').forEach(bar => {
+                bar.style.width = bar.dataset.width;
+            });
+        }, 100);
+
+        // Generate table
+        const table = document.getElementById('restaurantTable');
+        restaurants.forEach(restaurant => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><strong>${restaurant.name}</strong></td>
+                <td>${restaurant.category}</td>
+                <td><strong>₹${restaurant.amount}</strong></td>
+                <td><span class="tier-badge ${getTierBadgeClass(restaurant.tier)}">${getTierLabel(restaurant.tier)}</span></td>
+            `;
+            table.appendChild(row);
+        });
+
+        // Populate dropdown in claim form
+        const select = document.getElementById('restaurantSelect');
+        restaurants.forEach(restaurant => {
+            const option = document.createElement('option');
+            option.value = restaurant.amount;
+            option.textContent = `${restaurant.name} (₹${restaurant.amount} required)`;
+            select.appendChild(option);
+        });
+
+        function updateRequiredAmount() {
+            const select = document.getElementById('restaurantSelect');
+            const amountRequired = document.getElementById('amountRequired');
+            const billAmount = document.getElementById('billAmount');
+            
+            if (select.value) {
+                amountRequired.textContent = `Minimum required: ₹${select.value}`;
+                billAmount.min = select.value;
+            } else {
+                amountRequired.textContent = '';
+                billAmount.min = '';
+            }
+        }
+
+        function scrollToRestaurants() {
+            document.querySelector('.restaurant-comparison').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showClaimForm() {
+            document.getElementById('claimModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function submitClaim(e) {
+            e.preventDefault();
+            const select = document.getElementById('restaurantSelect');
+            const billAmount = document.getElementById('billAmount');
+            const requiredAmount = parseInt(select.value);
+            const enteredAmount = parseInt(billAmount.value);
+            
+            if (enteredAmount < requiredAmount) {
+                alert(`Your bill amount (₹${enteredAmount}) is less than the required amount (₹${requiredAmount}). Please accumulate more bills from this restaurant.`);
+                return;
+            }
+            
+            alert('Thank you for your claim! Our team will verify your bills and contact you within 24-48 hours to confirm your free stay booking.');
+            closeModal('claimModal');
+            e.target.reset();
+            updateRequiredAmount();
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

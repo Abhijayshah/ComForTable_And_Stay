@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +24,16 @@
           <a class="nav-link" href="#restaurants">Restaurants</a>
           <a class="nav-link" href="#chart">Threshold Chart</a>
           <a class="nav-link" href="#bookings">My Bookings</a>
+          <a class="nav-link" href="index2.html">Room Details</a>
         </nav>
+        <div class="theme-select" aria-label="Theme selector">
+          <span class="label">Theme</span>
+          <select id="themeSelect" aria-label="Theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="system" selected>System</option>
+          </select>
+        </div>
       </div>
     </header>
 
@@ -48,6 +57,11 @@
         <div class="chart-wrap">
           <canvas id="thresholdChart" aria-label="Restaurant threshold chart" role="img"></canvas>
         </div>
+        <div class="legend" aria-label="Threshold tiers legend">
+          <div class="legend-item"><span class="legend-color" style="background: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);"></span><span>Budget Friendly (≤ ₹600)</span></div>
+          <div class="legend-item"><span class="legend-color" style="background: linear-gradient(90deg, #f09819 0%, #edde5d 100%);"></span><span>Standard (₹700–₹1200)</span></div>
+          <div class="legend-item"><span class="legend-color" style="background: linear-gradient(90deg, #eb3349 0%, #f45c43 100%);"></span><span>Premium (≥ ₹1500)</span></div>
+        </div>
       </section>
 
       <!-- My bookings -->
@@ -62,6 +76,83 @@
         <div id="bookingsList" class="grid bookings-grid" aria-live="polite" aria-busy="false"></div>
       </section>
     </main>
+
+    <section class="container section" id="program" aria-labelledby="program-title">
+      <div class="section-head">
+        <h2 id="program-title">Program Overview</h2>
+        <p class="section-sub">Dine at partner restaurants and claim a 1‑day free stay.</p>
+      </div>
+
+      <div class="info-box">
+        <strong>How it works:</strong> Each partner restaurant has a different bill threshold. Premium restaurants require higher spending, while budget‑friendly options have lower requirements. Choose what suits your dining style.
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div><strong>Choose Your Restaurant</strong><br />Pick from our partners by budget and preference</div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div><strong>Dine & Collect Bills</strong><br />Save bills until you reach the required threshold</div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div><strong>Scan QR or Visit Site</strong><br />Open details via QR or directly here</div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div><strong>Book Free Stay</strong><br />Use the Details modal to confirm your booking</div>
+        </div>
+        <div class="step">
+          <div class="step-number">5</div>
+          <div><strong>Enjoy Your Stay</strong><br />Check‑out at 11:59 AM next day</div>
+        </div>
+      </div>
+
+      <div class="rules-box">
+        <h3 class="h2">Terms & Conditions</h3>
+        <ul class="list">
+          <li>Bills can be accumulated at the same restaurant</li>
+          <li>Thresholds vary per restaurant; confirm in Details</li>
+          <li>Check‑in anytime; check‑out is next day 11:59</li>
+          <li>One free stay per customer per restaurant per month</li>
+          <li>Subject to availability; advance booking recommended</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="container section instagram-section" id="instagram">
+      <h2 class="instagram-header">Check Instagram for Room Details</h2>
+      <div class="instagram-card">
+        <div>
+          <div class="insta-handle">@com_for_table_stay</div>
+          <div class="muted">Photos, room types, updates, and more.</div>
+        </div>
+        <a class="btn btn-instagram" href="https://www.instagram.com/com_for_table_stay/" target="_blank" rel="noopener" aria-label="View @com_for_table_stay on Instagram">View on Instagram</a>
+      </div>
+    </section>
+
+    <section class="container section" id="contact">
+      <h2 class="h2">Contact Support</h2>
+      <p class="muted" style="margin-bottom:12px">Questions or booking assistance? Send us a message or call.</p>
+      <div class="contact-section">
+        <div class="contact-item">
+          <div class="contact-number">+91 7879028316</div>
+          <div class="contact-actions">
+            <a class="btn btn-call" href="tel:+917879028316">Call</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/917879028316?text=Hello,%20I%20want%20to%20book%20a%20bed.%20OR%20Hi%20I%20want%20to%20claim%20a%20free%20stay" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-number">+91 9770236735</div>
+          <div class="contact-actions">
+            <a class="btn btn-call" href="tel:+919770236735">Call</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/919770236735?text=Hi%20I%20want%20to%20claim%20a%20free%20stay.Hello,%20I%20want%20to%20book%20a%20bed." target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="site-footer">
       <div class="container">
@@ -86,6 +177,7 @@
             <div class="modal-columns">
               <div class="modal-left">
                 <div class="modal-hero" id="modalImages"></div>
+                <div class="modal-hero" id="roomImages"></div>
 
                 <div class="modal-info" id="modalInfo"></div>
 
@@ -124,12 +216,12 @@
                   </div>
                   <div class="field">
                     <label for="roomType" class="label">Room Type</label>
-                    <select id="roomType" name="roomType" class="input">
-                      <option value="dormitory">Dormitory</option>
-                      <option value="pg">PG</option>
-                      <option value="hotel">Hotel</option>
-                    </select>
-                  </div>
+                  <select id="roomType" name="roomType" class="input">
+                    <option value="dormitory">Dormitory</option>
+                    <option value="pg">PG</option>
+                    <option value="hotel">Hotel</option>
+                  </select>
+                </div>
                   <button class="btn btn-primary" type="submit">Confirm Booking</button>
                   <p class="form-note">Threshold check is enforced. Bookings are stored locally.</p>
                 </form>

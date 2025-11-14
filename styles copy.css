@@ -1,0 +1,105 @@
+:root{
+  --text:#0f172a; --muted:#475569; --brand:#0284c7; --accent:#0ea5e9; --ok:#16a34a; --warn:#b45309; --ring:#94a3b8;
+  --bg-gradient: linear-gradient(180deg,#f6f8fb, #f1f5f9 35%, #eef2f7);
+  --card-gradient: linear-gradient(180deg,#ffffff,#f8fafc);
+  --surface:#ffffff;
+  --surface-weak:#f1f5f9;
+  --pill-bg: rgba(255,255,255,0.8);
+  --border: rgba(148,163,184,.25);
+  --poster-max-width: 320px;
+}
+html[data-theme="dark"]{
+  --text:#e5e7eb; --muted:#9aa4b2; --brand:#22d3ee; --accent:#38bdf8; --ok:#22c55e; --warn:#f59e0b; --ring:#94a3b8;
+  --bg-gradient: linear-gradient(180deg,#0b1220, #0a1328 35%, #091127);
+  --card-gradient: linear-gradient(180deg,#0f162a,#0d1426);
+  --surface:#0f172a;
+  --surface-weak:#0f1426;
+  --pill-bg: #0b1220a8;
+  --border: rgba(148,163,184,.2);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg-gradient);color:var(--text);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans Devanagari", sans-serif}
+ a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:auto;padding:24px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:12px;background:radial-gradient(120% 120% at 30% 20%, var(--accent), #1e293b 55%, #0b1220);box-shadow:0 0 0 3px rgba(56,189,248,.35), 0 8px 30px rgba(56,189,248,.25)}
+.title{font-weight:800;letter-spacing:.2px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--border);border-radius:999px;background:var(--pill-bg);backdrop-filter:blur(6px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:12px;border:1px solid rgba(148,163,184,.35);background:linear-gradient(180deg,#0f172a, #0b1323);box-shadow:inset 0 0 0 1px rgba(148,163,184,.15);transition:all 0.2s ease;color:#e5e7eb}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(56,189,248,.25)}
+.btn.primary{background:linear-gradient(180deg, #0891b2, #0284c7);border-color:transparent;color:#ffffff}
+.btn.whatsapp{background:linear-gradient(180deg,#16a34a,#15803d);color:#ffffff}
+.grid{display:grid;gap:18px}
+.hero{padding:32px 0 20px}
+.hero h1{font-size:clamp(28px,4.2vw,50px);line-height:1.08;margin:14px 0 6px}
+.hero p.lead{font-size:clamp(15px,2.2vw,19px);color:var(--muted)}
+.cards{grid-template-columns:repeat(auto-fit, minmax(240px,1fr))}
+.card{background:var(--card-gradient);border:1px solid var(--border);border-radius:18px;padding:18px;transition:transform 0.2s ease}
+.card:hover{transform:translateY(-2px)}
+.badge{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;background:#0b2b3a;color:#7dd3fc;border:1px solid rgba(56,189,248,.35)}
+.price{font-size:32px;font-weight:800;letter-spacing:.3px}
+.muted{color:var(--muted)}
+.list{margin:10px 0 0;padding:0;list-style:none}
+.list li{display:flex;gap:10px;align-items:flex-start;margin:8px 0}
+.check{width:18px;height:18px;border-radius:6px;background:linear-gradient(180deg,#059669,#15803d);display:inline-block;margin-top:2px}
+.section{padding:24px 0}
+.h2{font-size:clamp(22px,3.2vw,34px);margin:0 0 8px}
+.map{border:0;width:100%;height:340px;border-radius:18px}
+.ctaBar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (min-width:860px){.ctaBar{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:640px){.ctaBar{grid-template-columns:1fr}}
+.footer{margin-top:24px;padding:20px;border-top:1px solid var(--border);color:var(--muted)}
+.faq details{background:var(--surface-weak);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:8px}
+.faq summary{cursor:pointer;font-weight:600;padding:4px 0}
+.mono{font-variant-numeric:tabular-nums}
+.banner{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.hi{font-family:"Noto Sans Devanagari", sans-serif}
+.highlight{background:linear-gradient(90deg,#67e8f9,#22d3ee);-webkit-background-clip:text;color:transparent;background-clip:text}
+.pulse{animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+/* Gallery & Card extraction */
+.gallery-grid-280{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:30px}
+.gallery-grid-200{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+.gallery-grid-200x{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.gallery-grid-240{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:30px}
+.center{text-align:center}
+.media{width:100%;height:auto;border-radius:8px}
+.media-lg{max-width:400px;border-radius:12px}
+.poster{width:100%;max-width:min(100%, var(--poster-max-width, 320px));height:auto;border-radius:12px;object-fit:contain}
+.media-wrap{text-align:center;margin:15px 0}
+.media-wrap-sm{text-align:center;margin:10px 0}
+.clickable{cursor:pointer}
+.form{display:grid;gap:10px}
+.form label{display:flex;flex-direction:column;gap:6px;font-weight:600}
+.form input,.form textarea{padding:10px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:inherit;font:inherit}
+.form textarea{min-height:100px;resize:vertical}
+
+/* === Merged styles from index2.html (scoped) === */
+/* Poster Top Dashboard removed */
+
+/* Instagram section */
+.instagram-section{ max-width:1000px; margin:24px auto 20px; padding:16px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.06) }
+.instagram-header{ text-align:center; margin-bottom:10px; color:#374151 }
+.instagram-card{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; background:#fff; border:1px solid #e5e7eb; border-radius:10px }
+.insta-handle{ font-weight:600; color:#1f2937 }
+.btn-instagram{ padding:10px 14px; border-radius:8px; background:linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4); color:#fff; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease }
+.btn-instagram:hover{ transform:translateY(-2px); box-shadow:0 8px 16px rgba(221,42,123,0.35) }
+@media (max-width:600px){ .instagram-card{ flex-direction:column; align-items:flex-start } }
+
+/* Contact phone block */
+.contact-section{ background:#fff; padding:20px; border-radius:15px; margin:18px 0; box-shadow:0 10px 30px rgba(0,0,0,0.08) }
+.contact-item{ display:flex; align-items:center; justify-content:space-between; padding:12px; background:#f8f9fa; border-radius:10px; border-left:4px solid #667eea; margin-bottom:12px }
+.contact-number{ font-weight:700; color:#1e3c72; font-size:1.05em }
+.contact-actions{ display:flex; gap:10px; flex-wrap:wrap }
+.btn-whatsapp{ background:linear-gradient(135deg, #25D366 0%, #128C7E 100%); color:#fff }
+.btn-call{ background:linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color:#fff }
+@media (max-width:768px){ .contact-item{ flex-direction:column; align-items:flex-start; gap:10px } }
+
+/* Restaurant comparison removed */
+@media (max-width:768px){
+  .bar-item{ flex-direction:column; align-items:flex-start }
+  .restaurant-name{ min-width:auto }
+  .restaurant-table{ font-size:.95em }
+  .restaurant-table th,.restaurant-table td{ padding:10px }
+}

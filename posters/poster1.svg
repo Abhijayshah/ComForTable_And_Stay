@@ -1,0 +1,65 @@
+<svg width="300" height="400" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="posterBg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:0.95" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="400" fill="url(#posterBg1)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="50" cy="50" r="20" fill="#ffffff" opacity="0.1"/>
+  <circle cx="250" cy="80" r="15" fill="#ffffff" opacity="0.1"/>
+  <circle cx="30" cy="350" r="25" fill="#ffffff" opacity="0.1"/>
+  <circle cx="270" cy="320" r="18" fill="#ffffff" opacity="0.1"/>
+  
+  <!-- Main Title -->
+  <text x="150" y="60" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">HOTEL</text>
+  <text x="150" y="85" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#fbbf24">MANAGEMENT</text>
+  
+  <!-- Subtitle -->
+  <text x="150" y="110" font-family="Arial" font-size="12" text-anchor="middle" fill="#e2e8f0">Premium Accommodation</text>
+  
+  <!-- Price Cards -->
+  <rect x="30" y="140" width="240" height="60" fill="url(#cardBg)" rx="10" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="150" y="160" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af">DAILY RATES</text>
+  <text x="80" y="180" font-family="Arial" font-size="12" text-anchor="middle" fill="#374151">AC Room: ₹200</text>
+  <text x="220" y="180" font-family="Arial" font-size="12" text-anchor="middle" fill="#374151">Non-AC: ₹100</text>
+  
+  <rect x="30" y="220" width="240" height="60" fill="url(#cardBg)" rx="10" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="150" y="240" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e40af">MONTHLY RATES</text>
+  <text x="150" y="260" font-family="Arial" font-size="12" text-anchor="middle" fill="#374151">Starting from ₹2,000+</text>
+  
+  <!-- Features -->
+  <text x="150" y="310" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#ffffff">AMENITIES</text>
+  
+  <!-- Feature icons and text -->
+  <circle cx="60" cy="330" r="8" fill="#10b981"/>
+  <text x="60" y="335" font-family="Arial" font-size="8" text-anchor="middle" fill="#ffffff">AC</text>
+  <text x="100" y="335" font-family="Arial" font-size="10" fill="#e2e8f0">Air Conditioning</text>
+  
+  <circle cx="60" cy="350" r="8" fill="#f59e0b"/>
+  <text x="60" y="355" font-family="Arial" font-size="8" text-anchor="middle" fill="#ffffff">24/7</text>
+  <text x="100" y="355" font-family="Arial" font-size="10" fill="#e2e8f0">24/7 Service</text>
+  
+  <circle cx="200" cy="330" r="8" fill="#ef4444"/>
+  <text x="200" y="335" font-family="Arial" font-size="8" text-anchor="middle" fill="#ffffff">WiFi</text>
+  <text x="240" y="335" font-family="Arial" font-size="10" fill="#e2e8f0">Free WiFi</text>
+  
+  <circle cx="200" cy="350" r="8" fill="#8b5cf6"/>
+  <text x="200" y="355" font-family="Arial" font-size="8" text-anchor="middle" fill="#ffffff">Safe</text>
+  <text x="240" y="355" font-family="Arial" font-size="10" fill="#e2e8f0">Secure Lockers</text>
+  
+  <!-- Contact -->
+  <text x="150" y="385" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#fbbf24">Call: +91 9876543210</text>
+  
+  <!-- Border -->
+  <rect x="5" y="5" width="290" height="390" fill="none" stroke="#ffffff" stroke-width="2" rx="15"/>
+</svg>
