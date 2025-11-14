@@ -103,6 +103,33 @@ const rooms = {
   },
 };
 
+const THEME_KEY = 'cs_theme';
+function getTheme() {
+  const t = localStorage.getItem(THEME_KEY);
+  return t === 'light' || t === 'dark' || t === 'system' ? t : 'system';
+}
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const sel = document.getElementById('themeSelect');
+  if (sel) sel.value = theme;
+}
+function initTheme() {
+  const current = getTheme();
+  applyTheme(current);
+  const sel = document.getElementById('themeSelect');
+  if (sel) {
+    sel.onchange = () => {
+      const v = sel.value;
+      localStorage.setItem(THEME_KEY, v);
+      applyTheme(v);
+    };
+  }
+  const mm = window.matchMedia('(prefers-color-scheme: dark)');
+  mm.addEventListener('change', () => {
+    if (getTheme() === 'system') applyTheme('system');
+  });
+}
+
 // Storage helpers
 const LS_KEY = 'cs_bookings';
 /** @returns {any[]} */
@@ -226,6 +253,7 @@ function openModal(restaurantId, opts = {}) {
   const title = document.getElementById('modalTitle');
   const desc = document.getElementById('modalDesc');
   const imagesBox = document.getElementById('modalImages');
+  const roomImagesBox = document.getElementById('roomImages');
   const infoBox = document.getElementById('modalInfo');
   const billInput = document.getElementById('billAmountInput');
   const eligMsg = document.getElementById('eligibilityMsg');
@@ -236,7 +264,7 @@ function openModal(restaurantId, opts = {}) {
   const closeBtn = document.getElementById('modalCloseBtn');
 
   const r = restaurants.find((x) => x.id === restaurantId);
-  if (!modal || !r || !title || !desc || !imagesBox || !infoBox || !billInput || !eligMsg || !qrImg || !qrFallback || !qrLinkText || !form || !closeBtn) return;
+  if (!modal || !r || !title || !desc || !imagesBox || !roomImagesBox || !infoBox || !billInput || !eligMsg || !qrImg || !qrFallback || !qrLinkText || !form || !closeBtn) return;
 
   lastFocus = document.activeElement;
   title.textContent = r.name;
@@ -256,6 +284,27 @@ function openModal(restaurantId, opts = {}) {
     <p><strong>Address:</strong> ${escapeHTML(r.address)}</p>
     <p><strong>Room sample:</strong> ${escapeHTML(roomFeat)}</p>
   `;
+  roomImagesBox.innerHTML = '';
+  chosenRoom.images.forEach((src) => {
+    const im = document.createElement('img');
+    im.src = src; im.alt = `${roomTypeEl.value} photo`;
+    roomImagesBox.appendChild(im);
+  });
+
+  roomTypeEl.onchange = () => {
+    const roomSel = rooms[roomTypeEl.value];
+    const feats = roomSel.features.join(', ');
+    infoBox.innerHTML = `
+      <p><strong>Address:</strong> ${escapeHTML(r.address)}</p>
+      <p><strong>Room sample:</strong> ${escapeHTML(feats)}</p>
+    `;
+    roomImagesBox.innerHTML = '';
+    roomSel.images.forEach((src) => {
+      const im = document.createElement('img');
+      im.src = src; im.alt = `${roomTypeEl.value} photo`;
+      roomImagesBox.appendChild(im);
+    });
+  };
 
   // Eligibility init
   eligMsg.textContent = '';
@@ -474,6 +523,7 @@ function init() {
   const yEl = document.getElementById('year');
   if (yEl) yEl.textContent = String(new Date().getFullYear());
 
+  initTheme();
   renderRestaurants();
   renderChart();
   renderBookings();

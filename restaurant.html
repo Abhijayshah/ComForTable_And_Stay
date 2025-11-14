@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comfortable Stay — Restaurant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="brand">Comfortable Stay</h1>
+        <nav aria-label="Primary">
+          <a class="nav-link" href="index.html#restaurants">Restaurants</a>
+          <a class="nav-link" href="index.html#chart">Threshold Chart</a>
+          <a class="nav-link" href="index.html#bookings">My Bookings</a>
+        </nav>
+        <div class="theme-select" aria-label="Theme selector">
+          <span class="label">Theme</span>
+          <select id="themeSelect" aria-label="Theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="system" selected>System</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="section" aria-labelledby="restaurant-open-title">
+        <div class="section-head">
+          <h2 id="restaurant-open-title">Restaurant Detail</h2>
+          <p class="section-sub">This page opens detail via the query parameter.</p>
+        </div>
+        <p class="fine">Use links or scan a QR that points to `index.html?restaurant=<id>`. This page also supports `?restaurant=<id>`.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="fine">© <span id="year"></span> Comfortable Stay</p>
+      </div>
+    </footer>
+
+    <div id="restaurantModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-dialog" role="document">
+        <button id="modalCloseBtn" class="modal-close" aria-label="Close details" data-close="true">✕</button>
+        <div class="modal-content">
+          <header class="modal-header">
+            <h2 id="modalTitle" class="modal-title">Restaurant Details</h2>
+            <p id="modalDesc" class="modal-sub">Review threshold, check eligibility, and book your free stay.</p>
+          </header>
+          <div class="modal-body">
+            <div class="modal-columns">
+              <div class="modal-left">
+                <div class="modal-hero" id="modalImages"></div>
+                <div class="modal-hero" id="roomImages"></div>
+                <div class="modal-info" id="modalInfo"></div>
+                <div class="eligibility">
+                  <label for="billAmountInput" class="label">Bill Amount (₹)</label>
+                  <input id="billAmountInput" type="number" inputmode="numeric" min="0" placeholder="Enter your bill" class="input" aria-describedby="eligibilityMsg" />
+                  <div id="eligibilityMsg" class="eligibility-msg" role="status" aria-live="polite"></div>
+                </div>
+                <div class="qr-wrap">
+                  <h3 class="subhead">Scan to open this restaurant</h3>
+                  <img id="qrImage" class="qr" alt="QR code that opens this restaurant on the site" />
+                  <div id="qrFallback" class="qr-fallback" hidden>
+                    <p>QR image blocked. Use the link:</p>
+                    <a id="qrLinkText" href="#" rel="noopener">Open Restaurant Link</a>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-right">
+                <form id="bookingForm" novalidate>
+                  <h3 class="subhead">Book Free Stay</h3>
+                  <div class="field">
+                    <label for="guestName" class="label">Full Name</label>
+                    <input id="guestName" name="guestName" type="text" class="input" placeholder="Your name" required />
+                  </div>
+                  <div class="field">
+                    <label for="phone" class="label">Phone</label>
+                    <input id="phone" name="phone" type="tel" class="input" inputmode="tel" placeholder="10-digit" required />
+                  </div>
+                  <div class="field">
+                    <label for="checkIn" class="label">Check-in Date</label>
+                    <input id="checkIn" name="checkIn" type="date" class="input" required />
+                  </div>
+                  <div class="field">
+                    <label for="roomType" class="label">Room Type</label>
+                    <select id="roomType" name="roomType" class="input">
+                      <option value="dormitory">Dormitory</option>
+                      <option value="pg">PG</option>
+                      <option value="hotel">Hotel</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Confirm Booking</button>
+                  <p class="form-note">Threshold check is enforced. Bookings are stored locally.</p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

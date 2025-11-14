@@ -1,0 +1,69 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wallGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fde68a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bedGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="floorGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a3a3a3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#737373;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background/Wall -->
+  <rect width="400" height="300" fill="url(#wallGradient2)"/>
+  
+  <!-- Floor -->
+  <rect x="0" y="220" width="400" height="80" fill="url(#floorGradient2)"/>
+  
+  <!-- Bed -->
+  <rect x="50" y="150" width="180" height="70" fill="url(#bedGradient2)" rx="5"/>
+  <rect x="45" y="145" width="190" height="10" fill="#b91c1c" rx="3"/>
+  
+  <!-- Pillow -->
+  <ellipse cx="140" cy="165" rx="25" ry="12" fill="#ffffff"/>
+  <ellipse cx="140" cy="165" rx="20" ry="8" fill="#f8fafc"/>
+  
+  <!-- Fan -->
+  <circle cx="200" cy="80" r="30" fill="#374151"/>
+  <circle cx="200" cy="80" r="25" fill="#4b5563"/>
+  <path d="M 200 55 Q 220 70 200 85 Q 180 70 200 55" fill="#6b7280"/>
+  <path d="M 175 80 Q 190 100 205 80 Q 190 60 175 80" fill="#6b7280"/>
+  <path d="M 200 105 Q 180 90 200 75 Q 220 90 200 105" fill="#6b7280"/>
+  <path d="M 225 80 Q 210 60 195 80 Q 210 100 225 80" fill="#6b7280"/>
+  <circle cx="200" cy="80" r="8" fill="#1f2937"/>
+  
+  <!-- Window -->
+  <rect x="280" y="100" width="100" height="80" fill="#bfdbfe" stroke="#64748b" stroke-width="3"/>
+  <line x1="330" y1="100" x2="330" y2="180" stroke="#64748b" stroke-width="2"/>
+  <line x1="280" y1="140" x2="380" y2="140" stroke="#64748b" stroke-width="2"/>
+  
+  <!-- Side Table -->
+  <rect x="250" y="170" width="40" height="50" fill="#8b4513"/>
+  <rect x="245" y="165" width="50" height="8" fill="#a0522d"/>
+  
+  <!-- Water Bottle -->
+  <rect x="265" y="155" width="6" height="15" fill="#3b82f6" rx="3"/>
+  <rect x="266" y="153" width="4" height="3" fill="#1e40af" rx="1"/>
+  
+  <!-- Multiple Lockers -->
+  <rect x="15" y="160" width="25" height="35" fill="#4a5568" rx="2"/>
+  <rect x="17" y="162" width="21" height="31" fill="#6b7280" rx="1"/>
+  <circle cx="35" cy="177" r="1.5" fill="#fbbf24"/>
+  
+  <rect x="15" y="200" width="25" height="35" fill="#4a5568" rx="2"/>
+  <rect x="17" y="202" width="21" height="31" fill="#6b7280" rx="1"/>
+  <circle cx="35" cy="217" r="1.5" fill="#fbbf24"/>
+  
+  <!-- Door -->
+  <rect x="0" y="120" width="8" height="100" fill="#8b4513"/>
+  <circle cx="6" cy="170" r="1" fill="#fbbf24"/>
+  
+  <!-- Title -->
+  <text x="200" y="25" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#dc2626">Non-AC Sleeper Room</text>
+  <text x="200" y="45" font-family="Arial" font-size="12" text-anchor="middle" fill="#64748b">₹100 / 24 hours</text>
+</svg>
