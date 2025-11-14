@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comfortable Stay — Claim Free Stay Offer</title>
+    <!-- Google Inter font (modern tech feel) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Chart.js (CDN) for threshold chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+
+    <!-- App styles and JS -->
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="brand">Comfortable Stay</h1>
+        <nav aria-label="Primary">
+          <a class="nav-link" href="#restaurants">Restaurants</a>
+          <a class="nav-link" href="#chart">Threshold Chart</a>
+          <a class="nav-link" href="#bookings">My Bookings</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <!-- Partner restaurants grid -->
+      <section id="restaurants" aria-labelledby="restaurants-title" class="section">
+        <div class="section-head">
+          <h2 id="restaurants-title">Partner Restaurants</h2>
+          <!-- Tip: Modify restaurant list in app.js (restaurants[]) -->
+          <p class="section-sub">Scan QR on cards or open details to book a free stay.</p>
+        </div>
+        <div id="restaurantGrid" class="grid"></div>
+      </section>
+
+      <!-- Threshold chart -->
+      <section id="chart" aria-labelledby="chart-title" class="section">
+        <div class="section-head">
+          <h2 id="chart-title">Thresholds by Restaurant</h2>
+          <!-- Tip: Edit threshold values in app.js and chart updates automatically -->
+        </div>
+        <div class="chart-wrap">
+          <canvas id="thresholdChart" aria-label="Restaurant threshold chart" role="img"></canvas>
+        </div>
+      </section>
+
+      <!-- My bookings -->
+      <section id="bookings" aria-labelledby="bookings-title" class="section">
+        <div class="section-head">
+          <h2 id="bookings-title">My Bookings</h2>
+          <p class="section-sub">Demo bookings are stored in your browser using localStorage.</p>
+        </div>
+        <div id="bookingsActions" class="bookings-actions">
+          <button id="clearBookingsBtn" class="btn btn-ghost" type="button">Clear All</button>
+        </div>
+        <div id="bookingsList" class="grid bookings-grid" aria-live="polite" aria-busy="false"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="fine">Claim-Free-Stay is demo-only in this version. No backend or payments.</p>
+        <p class="fine">© <span id="year"></span> Comfortable Stay</p>
+      </div>
+    </footer>
+
+    <!-- Accessible modal for restaurant details and booking -->
+    <div id="restaurantModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-dialog" role="document">
+        <button id="modalCloseBtn" class="modal-close" aria-label="Close details" data-close="true">✕</button>
+
+        <div class="modal-content">
+          <header class="modal-header">
+            <h2 id="modalTitle" class="modal-title">Restaurant Details</h2>
+            <p id="modalDesc" class="modal-sub">Review threshold, check eligibility, and book your free stay.</p>
+          </header>
+
+          <div class="modal-body">
+            <div class="modal-columns">
+              <div class="modal-left">
+                <div class="modal-hero" id="modalImages"></div>
+
+                <div class="modal-info" id="modalInfo"></div>
+
+                <div class="eligibility">
+                  <label for="billAmountInput" class="label">Bill Amount (₹)</label>
+                  <input id="billAmountInput" type="number" inputmode="numeric" min="0" placeholder="Enter your bill" class="input" aria-describedby="eligibilityMsg" />
+                  <div id="eligibilityMsg" class="eligibility-msg" role="status" aria-live="polite"></div>
+                </div>
+
+                <div class="qr-wrap">
+                  <h3 class="subhead">Scan to open this restaurant</h3>
+                  <!-- QR uses Google Chart API; fallback shows link text if blocked -->
+                  <img id="qrImage" class="qr" alt="QR code that opens this restaurant on the site" />
+                  <div id="qrFallback" class="qr-fallback" hidden>
+                    <p>QR image blocked. Use the link:</p>
+                    <a id="qrLinkText" href="#" rel="noopener">Open Restaurant Link</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-right">
+                <form id="bookingForm" novalidate>
+                  <h3 class="subhead">Book Free Stay</h3>
+                  <!-- Modify fields or rules later in app.js -->
+                  <div class="field">
+                    <label for="guestName" class="label">Full Name</label>
+                    <input id="guestName" name="guestName" type="text" class="input" placeholder="Your name" required />
+                  </div>
+                  <div class="field">
+                    <label for="phone" class="label">Phone</label>
+                    <input id="phone" name="phone" type="tel" class="input" inputmode="tel" placeholder="10-digit" required />
+                  </div>
+                  <div class="field">
+                    <label for="checkIn" class="label">Check-in Date</label>
+                    <input id="checkIn" name="checkIn" type="date" class="input" required />
+                  </div>
+                  <div class="field">
+                    <label for="roomType" class="label">Room Type</label>
+                    <select id="roomType" name="roomType" class="input">
+                      <option value="dormitory">Dormitory</option>
+                      <option value="pg">PG</option>
+                      <option value="hotel">Hotel</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-primary" type="submit">Confirm Booking</button>
+                  <p class="form-note">Threshold check is enforced. Bookings are stored locally.</p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
